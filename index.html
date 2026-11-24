@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Εντάξει, έχω κάτι για σένα ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(140deg,#211c32,#493149,#80516d);
+    font-family: Georgia, serif;
+    color: #fff4f7;
+    overflow-x: hidden;
+}
+
+.card {
+    width: 90%;
+    max-width: 520px;
+    padding: 35px 25px;
+    text-align: center;
+    background: #ffffff12;
+    border: 1px solid #ffffff30;
+    border-radius: 25px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 50px #0005;
+    animation: appear .8s ease;
+}
+
+h1 { font-size: 30px; }
+
+p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #f6dce8;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ffffff40;
+    border-radius: 30px;
+    background: #d982a5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover {
+    background: #edabc5;
+    transform: scale(1.04);
+}
+
+.small {
+    font-size: 13px;
+    opacity: .7;
+}
+
+.hidden { display: none; }
+
+.flowers {
+    font-size: 48px;
+    margin: 20px 0;
+    animation: float 3s infinite ease-in-out;
+}
+
+.progress {
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    color: #ffb4d2;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    50% { transform: translateY(-10px); }
+}
+
+.petal {
+    position: fixed;
+    top: -20px;
+    animation: fall 8s linear infinite;
+    pointer-events: none;
+    opacity: .6;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="petals"></div>
+
+<div class="card">
+
+    <section id="intro">
+        <div class="flowers">🌷</div>
+        <p class="small">ΕΧΩ ΜΙΑ ΜΙΚΡΗ ΕΚΠΛΗΞΗ</p>
+        <h1>Εντάξει, έχω κάτι για σένα.</h1>
+        <p>
+            Δεν είναι κάτι σπουδαίο.
+            Δεν είναι καν κανονικό παιχνίδι.
+            Αλλά το έφτιαξα εγώ, οπότε οφείλεις
+            τουλάχιστον να το εκτιμήσεις.
+        </p>
+        <button onclick="startGame()">Εντάξει, δείξε μου 😌</button>
+    </section>
+
+    <section id="game" class="hidden">
+        <div class="progress" id="progress">♡ ♡ ♡</div>
+        <p class="small" id="number">01 / 03</p>
+        <h1 id="question"></h1>
+        <p id="description"></p>
+        <div id="answers"></div>
+    </section>
+
+    <section id="final" class="hidden">
+        <p class="small">UNLOCKED: SOMETHING SPECIAL</p>
+        <h1>Λοιπόν, αυτό ήταν για σένα.</h1>
+
+        <div class="flowers">🌹 🌷 🌹</div>
+
+        <p>
+            Δεν ξέρω αν υπάρχει κάποιος
+            σωστός τρόπος να φτιάξεις κάτι
+            όμορφο για έναν άνθρωπο.
+        </p>
+
+        <p>
+            Ξέρω μόνο ότι ήθελα να έχεις
+            κάτι μικρό που να σου θυμίζει
+            ότι κάπου υπάρχει ένας τύπος
+            που σε σκέφτεται ακόμα και όταν
+            δεν έχει τίποτα έξυπνο να πει.
+        </p>
+
+        <p>
+            Και ναι, μπορεί να σε εκνευρίζω
+            καμιά φορά. Δεν αποκλείεται κιόλας.
+        </p>
+
+        <h2 style="color:#ffc3dc">
+            Δεν χρειάζεται να είναι όλα τέλεια,
+            αρκεί να είσαι εσύ εκεί.
+        </h2>
+
+        <div class="flowers">💐 🌷 🌹</div>
+
+        <p class="small">Made with love. And a little bit of coding. ❤️</p>
+    </section>
+
+</div>
+
+<script>
+
+const levels = [
+{
+    question: "Μια πολύ σοβαρή ερώτηση.",
+    description: "Αν ήμασταν μαζί τώρα, τι θα προτιμούσες;",
+    answers: [
+        "Να βγούμε για βόλτα 🌙",
+        "Να μείνουμε αγκαλιά 🫶",
+        "Να φάμε κάτι και να μη μοιραστούμε 😂"
+    ]
+},
+{
+    question: "Μια ερώτηση ζωής και θανάτου.",
+    description: "Αν έπρεπε να διαλέξεις ανάμεσα σε εμένα και ένα τεράστιο burger, τι θα διάλεγες;",
+    answers: [
+        "Εσένα φυσικά ❤️",
+        "Burger. Μην το κάνουμε δύσκολο 🍔",
+        "Εσένα... αλλά θα πάρουμε burger μετά 😂"
+    ]
+},
+{
+    question: "Τελευταία ερώτηση.",
+    description: "Αν μπορούσες να πατήσεις ένα κουμπί και να είμαστε μαζί αυτή τη στιγμή;",
+    answers: [
+        "ΠΑΤΑ ΤΟ ΤΩΡΑ ❤️",
+        "Πού είναι το κουμπί;;;;",
+        "Δεν χρειάζεται δεύτερη σκέψη 🥹"
+    ]
+}
+];
+
+let current = 0;
+
+function startGame() {
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+    showQuestion();
+}
+
+function showQuestion() {
+    const q = levels[current];
+
+    document.getElementById("question").innerText = q.question;
+    document.getElementById("description").innerText = q.description;
+    document.getElementById("number").innerText =
+        "0" + (current+1) + " / 03";
+
+    document.getElementById("progress").innerText =
+        "♥ ".repeat(current) + "♡ ".repeat(3-current);
+
+    const answers = document.getElementById("answers");
+    answers.innerHTML = "";
+
+    q.answers.forEach(answer => {
+        const btn = document.createElement("button");
+        btn.innerText = answer;
+
+        btn.onclick = () => {
+            current++;
+
+            if(current < levels.length) {
+                showQuestion();
+            } else {
+                finishGame();
+            }
+        };
+
+        answers.appendChild(btn);
+    });
+}
+
+function finishGame() {
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("final").classList.remove("hidden");
+}
+
+function createPetals() {
+    const container = document.getElementById("petals");
+
+    for(let i=0; i<18; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.innerText = ["🌸","🌷","✿"][i%3];
+        petal.style.left = Math.random()*100 + "vw";
+        petal.style.animationDelay = Math.random()*8 + "s";
+        petal.style.fontSize = (12+Math.random()*15) + "px";
+        container.appendChild(petal);
+    }
+}
+
+createPetals();
+
+</script>
+</body>
+</html>
